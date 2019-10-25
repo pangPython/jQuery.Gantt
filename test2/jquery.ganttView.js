@@ -236,7 +236,14 @@ behavior: {
                     if (data[i].series[j].color) {
                         block.css("background-color", data[i].series[j].color);
                     }
-                    block.append(jQuery("<div>", { "class": "ganttview-block-text" }).text(size));
+                    // show progress
+                    var progress = series.progress;
+                    var ganttviewBlockText = size;
+                    //  && typeof(progress)!="undefined" && progress!=0
+                    if(progress && progress <= 100 && progress >=0){
+                        ganttviewBlockText = size + '('+ progress +'%)'
+                    }
+                    block.append(jQuery("<div>", { "class": "ganttview-block-text" }).text(ganttviewBlockText));
                     jQuery(rows[rowIdx]).append(block);
                     rowIdx = rowIdx + 1;
                 }
