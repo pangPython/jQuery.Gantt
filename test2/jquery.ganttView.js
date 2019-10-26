@@ -39,7 +39,6 @@ behavior: {
     };
     
     function build(options) {
-    	
     	var els = this;
         var defaults = {
             showWeekends: true,
@@ -70,7 +69,6 @@ behavior: {
 			opts.end = startEnd[1];
 			
 	        els.each(function () {
-
 	            var container = jQuery(this);
 	            var div = jQuery("<div>", { "class": "ganttview" });
 	            new Chart(div, opts).render();
@@ -100,7 +98,8 @@ behavior: {
 	var Chart = function(div, opts) {
 		
 		function render() {
-			addVtHeader(div, opts.data, opts.cellHeight);
+            
+			addVtHeader(div,opts.header, opts.data, opts.cellHeight);
 
             var slideDiv = jQuery("<div>", {
                 "class": "ganttview-slide-container",
@@ -137,25 +136,45 @@ behavior: {
 			return dates;
         }
 
-        function addVtHeader(div, data, cellHeight) {
-            var headerDiv = jQuery("<div>", { "class": "ganttview-vtheader" });
+        function addVtHeader(div,header, data, cellHeight) {
+            var headerDiv = jQuery("<div>", { 
+                    "class": "ganttview-vtheader",
+                    "css": { 
+                        // "height": (21 * 4) + "px"
+                    }
+                 });
             // name
             var itemDivName = jQuery("<div>", { "class": "ganttview-vtheader-item" });
             itemDivName.append(jQuery("<div>", {
                 "class": "ganttview-vtheader-item-name",
                 "css": { "height": (1 * cellHeight) + "px" }
             }).append('名称'));
+            for (var i = 0; i <header.length; i++) {
+                var headerName = header[i];
+                itemDivName.append(jQuery("<div>", {
+                    "class": "ganttview-vtheader-item-name",
+                    "css": { "height": (1 * cellHeight) + "px" }
+                }).append(headerName));
+            }
             var seriesDivName = jQuery("<div>", { "class": "ganttview-vtheader-series" });
             seriesDivName.append(jQuery("<div>", { "class": "ganttview-vtheader-series-name" })
             .append('分支'));
             itemDivName.append(seriesDivName);
             headerDiv.append(itemDivName);
+            // 分支数据展示
             for (var i = 0; i < data.length; i++) {
                 var itemDiv = jQuery("<div>", { "class": "ganttview-vtheader-item" });
                 itemDiv.append(jQuery("<div>", {
                     "class": "ganttview-vtheader-item-name",
                     "css": { "height": (data[i].series.length * cellHeight) + "px" }
                 }).append(data[i].name));
+                var headerVals =  data[i].headerData;
+                for (var j = 0; j < headerVals.length; j++) {
+                    itemDiv.append(jQuery("<div>", {
+                        "class": "ganttview-vtheader-item-name",
+                        "css": { "height": (data[i].series.length * cellHeight) + "px" }
+                    }).append(headerVals[j].value));
+                }
                 var seriesDiv = jQuery("<div>", { "class": "ganttview-vtheader-series" });
                 for (var j = 0; j < data[i].series.length; j++) {
                     seriesDiv.append(jQuery("<div>", { "class": "ganttview-vtheader-series-name" })

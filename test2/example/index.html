@@ -26,7 +26,10 @@
 	<script type="text/javascript" src="data.js"></script>
 	<script type="text/javascript">
 		$(function () {
+			var headerData = ["人力成本","设备成本"];
+
 			$("#ganttChart").ganttView({ 
+				header:headerData,
 				data: ganttData,
 				slideWidth: 1600,
 				behavior: {
