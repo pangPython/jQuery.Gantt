@@ -52,6 +52,8 @@
 ## update
 ### 2019-10-25 增加进度参数
 ![进度预览](test2/preview.png)
+### 2019-10-26 增加表头显示
+![表头](test/preview-header.png)
 
  
  

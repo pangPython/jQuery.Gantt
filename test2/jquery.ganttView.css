@@ -71,9 +71,11 @@ div.ganttview-vtheader-item-name {
 }
 
 div.ganttview-vtheader-series-name {
-	width: 130px;
+	/*width: 130px;*/
+	width: 128px;
 	height: 31px;
-	border-top: 1px solid #d0d0d0;
+	/*border-top: 1px solid #d0d0d0;*/
+	border: 1px solid #d0d0d0;
 	line-height: 16px;
 	padding-left: 5px;
 }
