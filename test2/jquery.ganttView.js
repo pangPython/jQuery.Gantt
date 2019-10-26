@@ -139,6 +139,17 @@ behavior: {
 
         function addVtHeader(div, data, cellHeight) {
             var headerDiv = jQuery("<div>", { "class": "ganttview-vtheader" });
+            // name
+            var itemDivName = jQuery("<div>", { "class": "ganttview-vtheader-item" });
+            itemDivName.append(jQuery("<div>", {
+                "class": "ganttview-vtheader-item-name",
+                "css": { "height": (1 * cellHeight) + "px" }
+            }).append('名称'));
+            var seriesDivName = jQuery("<div>", { "class": "ganttview-vtheader-series" });
+            seriesDivName.append(jQuery("<div>", { "class": "ganttview-vtheader-series-name" })
+            .append('分支'));
+            itemDivName.append(seriesDivName);
+            headerDiv.append(itemDivName);
             for (var i = 0; i < data.length; i++) {
                 var itemDiv = jQuery("<div>", { "class": "ganttview-vtheader-item" });
                 itemDiv.append(jQuery("<div>", {

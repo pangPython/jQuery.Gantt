@@ -52,7 +52,7 @@ div.ganttview-hzheader-day {
 /* Vertical Header */
 
 div.ganttview-vtheader {
-	margin-top: 41px;
+	/*margin-top: 41px;*/
 	width: 240px;
 	overflow: hidden;
 	background-color: #fff;
